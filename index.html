@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Soonyata Panurat | Personal Portfolio</title>
+  <meta
+    name="description"
+    content="A personal portfolio featuring education, experience and data visualisation projects."
+  >
+
+  <style>
+    :root {
+      --blue: #006ba2;
+      --blue-dark: #06476b;
+      --orange: #e69f00;
+      --text: #172b3a;
+      --muted: #526473;
+      --background: #f5f8fb;
+      --white: #ffffff;
+      --border: #d6e1e9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    a {
+      color: var(--blue-dark);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    a:hover {
+      text-decoration-thickness: 3px;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 5px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      z-index: 10;
+      padding: 12px;
+      background: var(--white);
+    }
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: 0 auto;
+    }
+
+    .navigation {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navigation-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0;
+    }
+
+    .brand {
+      color: var(--blue-dark);
+      font-weight: 800;
+    }
+
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 22px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .menu a {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .hero {
+      padding: 76px 0 64px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 0.7fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--blue-dark);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .accent {
+      width: 60px;
+      height: 6px;
+      margin-bottom: 24px;
+      background: var(--orange);
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: clamp(36px, 6vw, 64px);
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      margin: 0 0 24px;
+      font-size: clamp(28px, 4vw, 38px);
+      letter-spacing: -0.025em;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 23px;
+    }
+
+    p {
+      margin: 0 0 18px;
+    }
+
+    .headline {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 21px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .portrait-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 270px;
+      padding: 24px;
+      border: 2px dashed #8fa7b8;
+      border-radius: 18px;
+      background: #edf4f9;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    main section {
+      padding: 58px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .reading-width {
+      max-width: 780px;
+    }
+
+    .cv-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--white);
+    }
+
+    .card ul {
+      padding-left: 22px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .project-heading {
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-label {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 5px 12px;
+      border-left: 4px solid var(--orange);
+      background: #fff5dc;
+      color: #634600;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    figure {
+      margin: 24px 0 0;
+    }
+
+    iframe {
+      display: block;
+      width: 100%;
+      height: 720px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    figcaption {
+      margin-top: 24px;
+    }
+
+    .insight {
+      padding: 20px;
+      border-left: 4px solid var(--orange);
+      background: #fff8e8;
+    }
+
+    .source {
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 32px 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .navigation-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .menu {
+        gap: 8px 16px;
+      }
+
+      .hero {
+        padding: 44px 0;
+      }
+
+      .hero-grid,
+      .cv-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-placeholder {
+        min-height: 180px;
+      }
+
+      main section {
+        padding: 40px 0;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      iframe {
+        height: 620px;
+      }
+
+      html {
+        scroll-padding-top: 160px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">
+    Skip to main content
+  </a>
+
+  <nav class="navigation" aria-label="Main navigation">
+    <div class="container navigation-inner">
+      <a class="brand" href="#home">My Portfolio</a>
+
+      <ul class="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="accent" aria-hidden="true"></div>
+        <p class="eyebrow">Personal portfolio</p>
+
+        <h1>Soonyata Panurat</h1>
+
+        <p class="headline">
+          I study People Analytics at UCL and use Python to explore questions about work, pay and performance.
+        </p>
+
+        <a class="button" href="#portfolio">
+          Explore my portfolio
+        </a>
+      </div>
+
+      <!-- No image is loaded until a checked portrait is ready. -->
+      <div class="portrait-placeholder">
+        <p>Portrait coming soon</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="container">
+
+    <section id="about" aria-labelledby="about-heading">
+      <p class="eyebrow">Introduction</p>
+      <h2 id="about-heading">About me</h2>
+
+      <div class="reading-width">
+        <p>
+          I studied finance at Chulalongkorn University and served as president of its BBA Student Council. At UCL, I’m building on that background by studying how people experience work. In a recent group project, I used employee data to explore how turnover varied across departments.
+        </p>
+      </div>
+    </section>
+
+    <section id="cv" aria-labelledby="cv-heading">
+      <p class="eyebrow">Background</p>
+      <h2 id="cv-heading">CV</h2>
+
+      <div class="cv-grid">
+        <article class="card">
+          <h3>Education</h3>
+          <p>
+            <strong>
+              MSc People Analytics and Human-Centric Management
+            </strong>
+          </p>
+          <p>UCL School of Management · 2026–2027</p>
+          <p class="muted">
+            BBA, Financial Analysis and Investment · Chulalongkorn University
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Experience</h3>
+          <p>
+            <strong>Investment Department Intern</strong>
+          </p>
+          <p>Bangkok Bank · June–July 2025</p>
+          <p class="muted">
+            Worked on company valuation and equity research.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Skills</h3>
+          <ul>
+            <li>Data visualisation in Python</li>
+            <li>Financial analysis and valuation</li>
+            <li>Student leadership and event planning</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="muted" style="margin-top:24px;">
+        CV download coming soon
+      </p>
+    </section>
+
+    <section id="portfolio" aria-labelledby="portfolio-heading">
+      <p class="eyebrow">Selected work</p>
+      <h2 id="portfolio-heading">Data Visualisation Portfolio</h2>
+
+      <article class="card">
+        <div class="project-heading">
+          <span class="project-label">
+            MSIN0167 · Class exercise
+          </span>
+
+          <h3>Big Mac Index: Does income change the comparison?</h3>
+
+          <p>
+            How do raw and GDP-adjusted currency valuations differ,
+            and which countries show the largest adjustments?
+          </p>
+
+          <p>
+            <a
+              href="bigmac_final.html"
+              target="_blank"
+              rel="noopener"
+            >
+              Open the full chart in a new tab
+            </a>
+          </p>
+
+          <p class="muted">
+            Use the controls to explore the original chart.
+            Scroll inside the frame to reach the additional
+            comparison chart. An internet connection is needed
+            for the interactive chart.
+          </p>
+        </div>
+
+        <figure>
+          <iframe
+            src="bigmac_final.html"
+            width="100%"
+            height="720"
+            loading="lazy"
+            title="Interactive Big Mac valuations by country and date,
+                   followed by the ten largest GDP adjustments
+                   against the US dollar in July 2026"
+          ></iframe>
+
+          <figcaption>
+            <p class="insight">
+              <strong>What to notice:</strong>
+              The July 2026 headline shows only a small difference
+              between the median absolute raw and GDP-adjusted gaps,
+              but the additional chart reveals much larger
+              adjustments for individual countries.
+            </p>
+
+            <p>
+              <strong>My addition:</strong>
+              A chart ranking the ten countries with the largest
+              absolute differences between raw and GDP-adjusted
+              valuations against the US dollar in July 2026.
+              Differences are shown in percentage points.
+              This added chart stays fixed when the interactive
+              chart’s controls change.
+            </p>
+
+            <p class="source">
+              A copy of the MSIN0167 course target chart, built as a
+              class exercise with AI help. Target A is inspired by
+              The Economist’s Big Mac index and is not a chart by
+              The Economist.
+            </p>
+
+            <p class="source">
+              Data: The Economist, Big Mac index
+              (MIT licence, see <a href="licence_bigmac.txt">licence_bigmac.txt</a>),
+              <a href="https://github.com/TheEconomist/big-mac-data">
+                github.com/TheEconomist/big-mac-data
+              </a>.
+            </p>
+
+            <p class="source">
+              Implementation: adapted from the supplied course HTML,
+              with CSV data preparation and an additional comparison
+              chart developed with ChatGPT assistance.
+            </p>
+          </figcaption>
+        </figure>
+      </article>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-heading">
+      <p class="eyebrow">Get in touch</p>
+      <h2 id="contact-heading">Contact</h2>
+
+      <p>
+        LinkedIn link coming soon.
+      </p>
+
+      <!--
+        Once your LinkedIn URL is ready, replace the paragraph above
+        with an anchor containing that exact HTTPS URL.
+        No link is created while the URL is missing.
+      -->
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        © 2026 Soonyata Panurat
+      </p>
+      <p>
+        Built with the help of generative AI; content and decisions
+        are my own.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
